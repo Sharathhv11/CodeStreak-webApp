@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(tailwindcss init:*)",
+      "Bash(npm list:*)",
+      "Bash(npm run:*)",
+      "Bash(dir client:*)",
+      "Bash(cmd /c \"rmdir /s /q client\")"
+    ]
+  }
+}

@@ -104,7 +104,7 @@ function showDisconnectedState() {
 
   connectBtn.classList.remove('hidden');
   connectBtn.disabled = false;
-  connectBtnText.textContent = 'Connect GitHub';
+  connectBtnText.textContent = 'Continue with GitHub';
   disconnectBtn.classList.add('hidden');
   userInfo.classList.add('hidden');
 }
