@@ -1,22 +1,22 @@
 /**
  * Popup script — handles UI state and user interactions.
- * Reads connection state from chrome.storage (set by background.js).
+ * Communicates with background.js via chrome.runtime.sendMessage().
  */
 
 // ── DOM Elements ──────────────────────────────────
-const connectBtn = document.getElementById('connectBtn');
+const connectBtn     = document.getElementById('connectBtn');
 const connectBtnText = document.getElementById('connectBtnText');
-const disconnectBtn = document.getElementById('disconnectBtn');
-const statusCard = document.getElementById('statusCard');
-const statusDot = document.getElementById('statusDot');
-const statusText = document.getElementById('statusText');
-const userInfo = document.getElementById('userInfo');
-const userAvatar = document.getElementById('userAvatar');
-const userName = document.getElementById('userName');
-const userLogin = document.getElementById('userLogin');
-const userRepos = document.getElementById('userRepos');
-const userFollowers = document.getElementById('userFollowers');
-const viewProfile = document.getElementById('viewProfile');
+const disconnectBtn  = document.getElementById('disconnectBtn');
+const statusCard     = document.getElementById('statusCard');
+const statusDot      = document.getElementById('statusDot');
+const statusText     = document.getElementById('statusText');
+const userInfo       = document.getElementById('userInfo');
+const userAvatar     = document.getElementById('userAvatar');
+const userName       = document.getElementById('userName');
+const userLogin      = document.getElementById('userLogin');
+const userRepos      = document.getElementById('userRepos');
+const userFollowers  = document.getElementById('userFollowers');
+const viewProfile    = document.getElementById('viewProfile');
 
 // ── Initialize ────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,41 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ── Load saved connection state ───────────────────
 function loadConnectionState() {
-  chrome.storage.local.get(['isConnected', 'githubUser', 'pendingAuthTabId', 'authError'], (result) => {
-    if (result.isConnected && result.githubUser) {
+  chrome.runtime.sendMessage({ action: 'getStatus' }, (result) => {
+    if (chrome.runtime.lastError) {
+      console.warn('Could not get status:', chrome.runtime.lastError.message);
+      showDisconnectedState();
+      return;
+    }
+    if (result?.isConnected && result?.githubUser) {
       showConnectedState(result.githubUser);
-    } else if (result.pendingAuthTabId) {
-      // OAuth is in progress — show loading state
-      showLoadingState();
-      startPolling();
     } else {
       showDisconnectedState();
-      if (result.authError) {
-        statusText.textContent = result.authError;
-        statusText.style.color = '#f85149';
-        setTimeout(() => {
-          statusText.textContent = 'Not Connected';
-          statusText.style.color = '';
-        }, 3000);
-      }
     }
   });
-}
-
-// ── Poll storage until OAuth completes ────────────
-function startPolling() {
-  const poll = setInterval(() => {
-    chrome.storage.local.get(['isConnected', 'githubUser', 'pendingAuthTabId'], (result) => {
-      if (result.isConnected && result.githubUser) {
-        clearInterval(poll);
-        showConnectedState(result.githubUser);
-      } else if (!result.pendingAuthTabId) {
-        // Auth finished but failed
-        clearInterval(poll);
-        showDisconnectedState();
-      }
-    });
-  }, 1000);
 }
 
 // ── UI State: Connected ───────────────────────────
@@ -115,25 +92,42 @@ function showLoadingState() {
   connectBtnText.innerHTML = '<span class="spinner"></span> Connecting...';
 }
 
+// ── UI State: Error ───────────────────────────────
+function showError(errorMessage) {
+  showDisconnectedState();
+  statusText.textContent = errorMessage;
+  statusText.style.color = '#f85149';
+  setTimeout(() => {
+    statusText.textContent = 'Not Connected';
+    statusText.style.color = '';
+  }, 4000);
+}
+
 // ── Connect GitHub Button ─────────────────────────
 connectBtn.addEventListener('click', () => {
   showLoadingState();
 
-  // Tell background to start OAuth (opens a tab)
   chrome.runtime.sendMessage({ action: 'startGitHubOAuth' }, (response) => {
     if (chrome.runtime.lastError) {
-      console.error('Error:', chrome.runtime.lastError.message);
-      showDisconnectedState();
+      showError('Connection failed. Please try again.');
+      console.error('OAuth error:', chrome.runtime.lastError.message);
       return;
     }
-    // Start polling for completion (popup may close/reopen)
-    startPolling();
+
+    if (response?.success && response?.user) {
+      showConnectedState(response.user);
+    } else {
+      showError(response?.error || 'Authentication failed.');
+    }
   });
 });
 
 // ── Disconnect Button ─────────────────────────────
 disconnectBtn.addEventListener('click', () => {
-  chrome.storage.local.remove(['isConnected', 'githubUser', 'authError'], () => {
+  chrome.runtime.sendMessage({ action: 'logout' }, (response) => {
+    if (chrome.runtime.lastError) {
+      console.error('Logout error:', chrome.runtime.lastError.message);
+    }
     showDisconnectedState();
   });
 });
