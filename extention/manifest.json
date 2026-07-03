@@ -1,27 +1,42 @@
 {
-  "manifest_version": 3,
-  "name": "CodeStreak",
-  "version": "1.0.0",
-  "description": "Track your coding streak by connecting your GitHub account.",
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqhVnDt/RNDlyWL2CwxYb1o876dzcJ+/WJeUAo33L/ZT2IMwgPfXRCgcNLXMMwW1FebcVbUs2NGo7C++x3BBxlJ2jKqgH2R0M0mpmhCvC3pDs4dwUu3iOpDQCmy2fDW27w8PFMtnfAkZhtgMrKWN3Q8mDI/PeNqJu6gcEANYpqW4PRINOoF49HSl4I91/zyIxD1xmlohn5aQlteMvNLiV1jItH27v3GXFoaVLFG7JTlrsbqn0Bt/vMxNJZWipyLNQov+6ruena7PSE/OdwJGQfHzfWndf71qPJE6sri/fLm6q/2zPRLdZEoKOxal/gapctzxTIRC9sSc4GfSc5VxUTQIDAQAB",
-  "permissions": [
-    "identity",
-    "storage"
-  ],
-  "action": {
-    "default_popup": "popup/popup.html",
-    "default_icon": {
-      "16": "icons/codestreak-favicon.png",
-      "48": "icons/codestreak-favicon.png",
-      "128": "icons/codestreak-favicon.png"
+    "manifest_version": 3,
+    "name": "CodeStreak",
+    "version": "1.0.0",
+    "description": "Track your DSA practice across platforms",
+    "permissions": [
+        "storage",
+        "tabs"
+    ],
+    "host_permissions": [
+        "https://leetcode.com/*",
+        "https://codeforces.com/*",
+        "http://localhost:5173/*",
+        "http://localhost:5000/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://leetcode.com/*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": {
+            "16": "icons/codestreak-favicon.png",
+            "48": "icons/codestreak-favicon.png",
+            "128": "icons/codestreak-favicon.png"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "externally_connectable": {
+        "matches": [
+            "http://localhost:5173/*"
+        ]
     }
-  },
-  "background": {
-    "service_worker": "background.js"
-  },
-  "icons": {
-    "16": "icons/codestreak-favicon.png",
-    "48": "icons/codestreak-favicon.png",
-    "128": "icons/codestreak-favicon.png"
-  }
 }
