@@ -48,6 +48,81 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         });
         return true;
     }
+
+    if (message.action === "createRepo") {
+        chrome.storage.local.get(["authToken", "githubUser"], async ({ authToken, githubUser }) => {
+            if (!githubUser) {
+                sendResponse({ success: false, error: "User is not connected." });
+                return;
+            }
+
+            try {
+                const backendCall = await fetch("http://localhost:5000/repo/create-repo", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${authToken || ''}`,
+                        "github_repo_name": `${message.repoName}`,
+                        "github_user_id": `${githubUser.github_id || githubUser.id || ''}`,
+                        "github_user_name": `${githubUser.name || ''}`,
+                        "github_user_login": `${githubUser.github_username || githubUser.login || ''}`,
+                        "github_user_avatar": `${githubUser.avatar_url || ''}`,
+                    },
+                    body: JSON.stringify({
+                        repoName: message.repoName
+                    })
+                });
+
+                const response = await backendCall.json();
+                console.log("Response from server:", response);
+
+                if (backendCall.ok && response.success) {
+                    // Update local storage so popup knows repo is ready
+                    githubUser.github_repo_name = message.repoName;
+                    githubUser.is_repo_ready = true;
+                    githubUser.github_repo_url = response.user?.github_repo_url || `https://github.com/${githubUser.github_username}/${message.repoName}`;
+                    if (response.user) {
+                        githubUser.installation_id = response.user.installation_id;
+                        githubUser.tier = response.user.tier || "free";
+                    }
+
+                    chrome.storage.local.set({ githubUser }, () => {
+                        sendResponse({ success: true, message: response.message });
+                    });
+                } else {
+                    // Reset fields on failure as requested
+                    githubUser.installation_id = null;
+                    githubUser.github_repo_name = null;
+                    githubUser.github_repo_url = null;
+                    githubUser.is_repo_ready = false;
+                    githubUser.tier = "free";
+
+                    chrome.storage.local.set({ githubUser }, () => {
+                        let errorMsg = response.message || "Repository creation failed.";
+                        if (response.errors && response.errors.length > 0) {
+                            errorMsg += " " + response.errors.map(e => e.message).join(", ");
+                        }
+                        sendResponse({ success: false, error: errorMsg });
+                    });
+                }
+
+            } catch (err) {
+                console.error("Error creating repo on backend:", err);
+                
+                // Also reset fields on network/unexpected error
+                githubUser.installation_id = null;
+                githubUser.github_repo_name = null;
+                githubUser.github_repo_url = null;
+                githubUser.is_repo_ready = false;
+                githubUser.tier = "free";
+
+                chrome.storage.local.set({ githubUser }, () => {
+                    sendResponse({ success: false, error: err.message });
+                });
+            }
+        });
+        return true; // Keep message channel open for async sendResponse
+    }
 });
 
 

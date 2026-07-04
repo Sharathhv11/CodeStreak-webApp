@@ -310,6 +310,62 @@ body {
   color: var(--text-muted);
 }
 
+/* ── Repo Creation Form ───────────────────────────── */
+#notRepo {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#notRepo p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+#repoName {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+#repoName:focus {
+  border-color: var(--border-active);
+}
+
+#createRepo {
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+#createRepo:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+#createRepo:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* ── Utilities ───────────────────────────────────── */
 .hidden {
   display: none !important;

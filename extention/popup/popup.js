@@ -17,6 +17,9 @@ const userLogin = document.getElementById('userLogin');
 const userRepos = document.getElementById('userRepos');
 const userFollowers = document.getElementById('userFollowers');
 const viewProfile = document.getElementById('viewProfile');
+const notRepo = document.getElementById('notRepo');
+const repoNameInput = document.getElementById('repoName');
+const createRepoBtn = document.getElementById('createRepo');
 
 // ── Initialize ────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
@@ -64,6 +67,13 @@ function showConnectedState(user) {
         viewProfile.href = profileUrl;
         viewProfile.classList.remove('hidden');
 
+        // Check if repository needs to be set up
+        if (!user.github_repo_name || !user.is_repo_ready) {
+            notRepo.classList.remove('hidden');
+        } else {
+            notRepo.classList.add('hidden');
+        }
+
         userInfo.classList.remove('hidden');
     }
 }
@@ -81,6 +91,7 @@ function showDisconnectedState() {
     connectBtnText.textContent = 'Continue with GitHub';
     disconnectBtn.classList.add('hidden');
     userInfo.classList.add('hidden');
+    notRepo.classList.add('hidden');
 }
 
 // ── UI State: Loading ─────────────────────────────
@@ -116,6 +127,32 @@ disconnectBtn.addEventListener('click', () => {
             console.error('Logout error:', chrome.runtime.lastError.message);
         }
         showDisconnectedState();
+    });
+});
+
+// ── Create Repo Button ─────────────────────────────
+createRepoBtn.addEventListener('click', () => {
+    const repoName = repoNameInput.value.trim();
+    if (!repoName) {
+        alert('Please enter a repository name');
+        return;
+    }
+    
+    // Disable button during creation
+    createRepoBtn.disabled = true;
+    createRepoBtn.textContent = 'Creating...';
+
+    // Send message to background to handle repository creation
+    chrome.runtime.sendMessage({ action: 'createRepo', repoName }, (response) => {
+        createRepoBtn.disabled = false;
+        createRepoBtn.textContent = 'Create Repo';
+        
+        if (response?.success) {
+            alert(`Repository "${repoName}" successfully linked!`);
+            loadConnectionState(); // Reload state to update the UI
+        } else {
+            alert(`Failed to create repository: ${response?.error || 'Unknown error'}`);
+        }
     });
 });
 
