@@ -1,5 +1,5 @@
-import { asyncController } from "../utils/asyncController.js";
-import AppError from "../utils/AppError.js";
+import { asyncController } from "../../utils/asyncController.js";
+import AppError from "../../utils/AppError.js";
 
 const createRepo = asyncController(async (req, res, next) => {
     //^ Check if repository is already configured
@@ -22,18 +22,29 @@ const createRepo = asyncController(async (req, res, next) => {
         return next(new AppError("Invalid repo name", 400));
     }
 
+
+    const { github_access_token } = req.user;
+
+    // step 1 — create the repo
     const githubResponse = await fetch("https://api.github.com/user/repos", {
         method: "POST",
-        headers: {
-            "Authorization": `Bearer ${req.user.github_access_token}`,
-            "Content-Type": "application/json"
-        },
+        headers: { Authorization: `Bearer ${req.user.github_access_token}` },
+        body: JSON.stringify({ name: repoName, private: false, description: "DSA Solutions pushed by CodeStreak" })
+    });
+    const githubResponseJson = await githubResponse.json();
+
+    // step 2 — push your README content
+    const readmeContent = `# Welcome to your CodeStreak repo
+Your DSA solutions will be automatically synced here by CodeStreak.`;
+
+    await fetch(`https://api.github.com/repos/${githubResponseJson.full_name}/contents/README.md`, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${github_access_token}` },
         body: JSON.stringify({
-            name: repoName
+            message: "Initial README",
+            content: Buffer.from(readmeContent).toString("base64")
         })
     });
-
-    const githubResponseJson = await githubResponse.json();
     console.log("GitHub Response:", githubResponseJson);
 
     //^ Check if repository creation failed

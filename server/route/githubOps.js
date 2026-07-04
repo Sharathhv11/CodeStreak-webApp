@@ -1,5 +1,5 @@
 import { Router } from "express"
-import createRepo from "../middleware/repoCreationController.js"
+import createRepo from "../controller/githubActions/repoCreationController.js"
 
 const gitHubRepoRouter = Router()
 
