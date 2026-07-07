@@ -108,7 +108,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
             } catch (err) {
                 console.error("Error creating repo on backend:", err);
-                
+
                 // Also reset fields on network/unexpected error
                 githubUser.installation_id = null;
                 githubUser.github_repo_name = null;
@@ -136,7 +136,7 @@ async function handleSubmission(submissionData) {
     }
 
     try {
-        const res = await fetch("http://localhost:3000/api/submissions", {
+        const res = await fetch("http://localhost:5000/api/submission", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -144,6 +144,8 @@ async function handleSubmission(submissionData) {
             },
             body: JSON.stringify(submissionData),
         });
+
+        console.log(res);
 
         if (res.status === 401) {
             await chrome.storage.local.remove("authToken");
