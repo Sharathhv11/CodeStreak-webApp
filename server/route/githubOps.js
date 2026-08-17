@@ -1,11 +1,15 @@
-import { Router } from "express"
-import createRepo from "../controller/githubActions/repoCreationController.js"
+import { Router } from "express";
+import {
+  createRepo,
+  unlinkRepo,
+  getRepoStatus,
+} from "../controller/githubActions/repoCreationController.js";
 
-const gitHubRepoRouter = Router()
+const gitHubRepoRouter = Router();
 
-
-
-// GitHub OAuth routes
+// GitHub Repository Management Routes
 gitHubRepoRouter.post("/create-repo", createRepo);
+gitHubRepoRouter.post("/unlink-repo", unlinkRepo);
+gitHubRepoRouter.get("/status", getRepoStatus);
 
 export default gitHubRepoRouter;

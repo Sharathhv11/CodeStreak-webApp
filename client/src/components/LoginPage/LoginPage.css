@@ -1,0 +1,207 @@
+/* ═══════════════════════════════════════════════════════════════
+   LOGIN PAGE (FAANG Ultra-Clean Dark Glassmorphism)
+   ═══════════════════════════════════════════════════════════════ */
+.login-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 32px 20px;
+  min-height: 100vh;
+}
+
+.login-back-btn {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid #30363d;
+  color: var(--text-2);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.login-back-btn:hover {
+  color: var(--text-0);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.login-bg-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.08) 0%, transparent 55%),
+    radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 15% 75%, rgba(255, 255, 255, 0.02) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.login-bg-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, #000 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 65% 65% at 50% 50%, #000 30%, transparent 100%);
+  pointer-events: none;
+}
+
+.login-card {
+  position: relative;
+  z-index: 1;
+  background: rgba(14, 14, 18, 0.6);
+  border: none;
+  box-shadow: none;
+  border-radius: var(--radius-xl);
+  padding: 48px 40px 40px;
+  max-width: 460px;
+  width: 100%;
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  animation: loginCardFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes loginCardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.login-brand-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.login-logo-glow-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.login-brand-logo {
+  height: 38px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+}
+
+.login-heading-group {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-title {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  color: var(--text-0);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.login-action-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.github-login-btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.btn-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  color: #000000;
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.btn-curvy-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #2563eb;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.github-login-btn:hover .btn-curvy-fill {
+  transform: translateY(0);
+}
+
+.github-login-btn:hover .btn-content {
+  color: #ffffff;
+}
+
+.login-security-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 12px;
+  color: #38bdf8;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.login-security-badge svg {
+  color: #38bdf8;
+  stroke: #38bdf8;
+  flex-shrink: 0;
+}

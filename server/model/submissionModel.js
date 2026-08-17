@@ -31,6 +31,10 @@ const submissionSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
+    concept: {
+      type: String,
+      default: "general",
+    },
     tags: [
       {
         name: String,
@@ -46,6 +50,23 @@ const submissionSchema = new mongoose.Schema(
       default: null,
     },
     explanation: {
+      type: String,
+      default: null,
+    },
+    platform: {
+      type: String,
+      default: "LeetCode",
+    },
+    difficulty: {
+      type: String,
+      enum: ["Easy", "Medium", "Hard"],
+      default: "Medium",
+    },
+    github_solution_url: {
+      type: String,
+      default: null,
+    },
+    github_readme_url: {
       type: String,
       default: null,
     },

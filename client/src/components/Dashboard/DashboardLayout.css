@@ -1,0 +1,289 @@
+/* ═══════════════════════════════════════════════════════════════════
+   CodeStreak Dashboard Shell Layout (Pure Black & White)
+   ═══════════════════════════════════════════════════════════════════ */
+
+.dash-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font);
+  position: relative;
+}
+
+/* ── Mobile Top Header ─────────────────────────────────────────── */
+.dash-mobile-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: var(--bg-surface-1);
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.dash-mobile-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+}
+
+.dash-mobile-toggle {
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-default);
+  color: var(--text-primary);
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+}
+
+.dash-mobile-toggle:hover {
+  background: var(--bg-surface-3);
+  border-color: var(--border-hover);
+}
+
+.dash-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 85;
+}
+
+/* ── Fixed Left Sidebar ────────────────────────────────────────── */
+.dash-sidebar {
+  width: 240px;
+  background: var(--bg-surface-1);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 90;
+  user-select: none;
+}
+
+.dash-sidebar-header {
+  padding: 22px 20px 18px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dash-sidebar-logo {
+  height: 28px;
+  width: auto;
+  max-width: 155px;
+  object-fit: contain;
+}
+
+/* ── Navigation Menu ───────────────────────────────────────────── */
+.dash-nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px 12px;
+  flex: 1;
+}
+
+.nav-section-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--text-muted);
+  padding: 0 12px 8px;
+}
+
+.dash-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  text-align: left;
+  width: 100%;
+  position: relative;
+}
+
+.dash-nav-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dash-nav-item.active {
+  background: var(--bg-surface-2);
+  color: #ffffff;
+  font-weight: 600;
+  border-color: var(--border-default);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.active-nav-glow {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 0 2px 2px 0;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.dash-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.dash-nav-label {
+  font-size: 13px;
+  letter-spacing: -0.1px;
+}
+
+/* ── Sidebar Footer (User & Logout) ────────────────────────────── */
+.dash-sidebar-footer {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #000000;
+}
+
+.dash-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.user-avatar-wrapper {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.dash-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-default);
+  object-fit: cover;
+}
+
+.user-online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: #ffffff;
+  border: 2px solid var(--bg-surface-1);
+}
+
+.dash-user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dash-user-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 110px;
+}
+
+.dash-user-tier {
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.dash-logout-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  padding: 7px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-fast) ease;
+}
+
+.dash-logout-btn:hover {
+  background: var(--bg-surface-2);
+  border-color: var(--border-subtle);
+  color: #ffffff;
+}
+
+/* ── Main Content Area ─────────────────────────────────────────── */
+.dash-main-content {
+  margin-left: 240px;
+  flex: 1;
+  min-height: 100vh;
+  background-color: var(--bg-canvas);
+  position: relative;
+}
+
+.dash-main-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 32px 64px;
+}
+
+/* ── Responsive Adaptations ────────────────────────────────────── */
+@media (max-width: 900px) {
+  .dash-mobile-header {
+    display: flex;
+  }
+
+  .dash-sidebar {
+    transform: translateX(-100%);
+    transition: transform var(--duration-normal) var(--ease-out);
+    z-index: 100;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+  }
+
+  .dash-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .dash-main-content {
+    margin-left: 0;
+  }
+
+  .dash-main-inner {
+    padding: 20px 16px 48px;
+  }
+}

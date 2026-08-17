@@ -1,0 +1,432 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Concept Stacked Bar Chart Component Styles
+   ═══════════════════════════════════════════════════════════════════ */
+
+.concept-stacked-chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  width: 100%;
+}
+
+/* ── Top Chart Controls (Legend + Mode Toggle) ─────────────────── */
+.chart-controls-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 4px 2px;
+}
+
+.chart-legend-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.legend-hint-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-muted, #a1a1aa);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  font-family: var(--font-mono, monospace);
+}
+
+.chart-legend-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--bg-surface-2, #18181b);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  border-radius: 9999px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.chart-legend-pill:hover {
+  background: var(--bg-surface-3, #27272a);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.chart-legend-pill.hidden {
+  opacity: 0.45;
+  background: transparent;
+  border-color: dashed rgba(255, 255, 255, 0.08);
+  text-decoration: line-through;
+}
+
+.legend-color-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.chart-legend-pill:hover .legend-color-dot {
+  transform: scale(1.25);
+}
+
+.legend-name {
+  color: #e4e4e7;
+}
+
+.legend-crossed {
+  font-size: 10px;
+  color: var(--text-muted, #71717a);
+  margin-left: 2px;
+}
+
+/* Mode Segmented Controls */
+.chart-mode-segmented {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-surface-2, #18181b);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  border-radius: 8px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.mode-pill {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-muted, #a1a1aa);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.mode-pill:hover {
+  color: #ffffff;
+}
+
+.mode-pill.active {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* ── SVG Surface ───────────────────────────────────────────────── */
+.svg-responsive-box {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.concept-stacked-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+/* Grid & Axes */
+.grid-line {
+  stroke: rgba(255, 255, 255, 0.07);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.grid-line.baseline {
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-dasharray: none;
+}
+
+.axis-baseline {
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 1.5;
+}
+
+.axis-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 10.5px;
+  fill: #71717a;
+  user-select: none;
+}
+
+.y-axis-label {
+  font-size: 10px;
+}
+
+.x-concept-label {
+  font-size: 11px;
+  font-family: inherit;
+  font-weight: 500;
+  fill: #a1a1aa;
+  transition: fill 0.2s ease, font-weight 0.2s ease;
+}
+
+.x-concept-label.active,
+.x-concept-label.selected {
+  fill: #ffffff;
+  font-weight: 700;
+}
+
+/* ── Bar Columns & Hover Effects ───────────────────────────────── */
+.bar-column-group {
+  transition: transform 0.2s ease;
+}
+
+.bar-backdrop-beam {
+  fill: transparent;
+  transition: fill 0.2s ease;
+}
+
+.bar-column-group.hovered .bar-backdrop-beam {
+  fill: rgba(255, 255, 255, 0.04);
+}
+
+.bar-column-group.selected .bar-backdrop-beam {
+  fill: rgba(255, 255, 255, 0.07);
+}
+
+.bar-segment {
+  transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              y 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.2s ease;
+}
+
+.bar-column-group:hover .bar-segment {
+  filter: brightness(1.12);
+}
+
+.bar-contour {
+  transition: stroke 0.2s ease, stroke-width 0.2s ease;
+}
+
+.bar-total-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  fill: #a1a1aa;
+  opacity: 0.85;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.bar-total-label.active {
+  fill: #ffffff;
+  opacity: 1;
+  font-size: 11.5px;
+}
+
+/* ── Interactive Floating Tooltip ─────────────────────────────── */
+.concept-chart-tooltip {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  margin-top: -12px;
+  pointer-events: none;
+  z-index: 50;
+  min-width: 210px;
+  background: rgba(18, 18, 20, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  animation: tooltip-fade-in 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tooltip-fade-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -92%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+}
+
+.tooltip-header {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tooltip-title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tooltip-concept-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tooltip-total-badge {
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--font-mono, monospace);
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  padding: 2px 7px;
+  border-radius: 9999px;
+}
+
+.tooltip-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.tooltip-diff-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.diff-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.diff-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.diff-title {
+  color: #d4d4d8;
+  font-weight: 500;
+}
+
+.diff-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono, monospace);
+}
+
+.diff-count {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.diff-pct {
+  color: #71717a;
+  font-size: 11px;
+}
+
+/* Tooltip Platforms */
+.tooltip-platforms-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 6px;
+}
+
+.tooltip-sub-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #71717a;
+  font-family: var(--font-mono, monospace);
+}
+
+.tooltip-plat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tooltip-plat-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10.5px;
+  color: #d4d4d8;
+  font-family: var(--font-mono, monospace);
+}
+
+.plat-dot-sm {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.tooltip-footer-hint {
+  font-size: 10px;
+  color: #52525b;
+  text-align: center;
+  padding-top: 4px;
+  font-style: italic;
+}
+
+/* ── Empty State ───────────────────────────────────────────────── */
+.concept-chart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  gap: 10px;
+  text-align: center;
+  color: var(--text-muted, #71717a);
+}
+
+.empty-chart-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a1a1aa;
+}
+
+.empty-chart-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.empty-chart-desc {
+  font-size: 12.5px;
+  color: #a1a1aa;
+  max-width: 420px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .chart-controls-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

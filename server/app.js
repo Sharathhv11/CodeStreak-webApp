@@ -1,4 +1,4 @@
-import express from "express"
+import express from "express";
 import authRouter from "./route/auth/authRoute.js";
 import { protect } from "./middleware/authMiddleware.js";
 import { globalErrorHandler } from "./middleware/errorMiddleware.js";
@@ -11,9 +11,7 @@ const app = express();
 app.use(express.json());
 
 //^ Auth controller 
-app.use("/auth", authRouter)
-
-
+app.use("/auth", authRouter);
 
 //^ repo controller
 app.use("/repo", protect, gitHubRepoRouter);

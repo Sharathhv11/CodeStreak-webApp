@@ -1,0 +1,217 @@
+/* ═══════════════════════════════════════════════════════════════════
+   IDE Code Viewer — VS Code / JetBrains Syntax Highlighting Engine
+   ═══════════════════════════════════════════════════════════════════ */
+
+.ide-code-viewer-container {
+  display: flex;
+  flex-direction: column;
+  background: #09090b;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  font-family: var(--mono);
+}
+
+/* ── IDE Toolbar Header ────────────────────────────────────────── */
+.ide-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #121215;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 8px 14px;
+  gap: 12px;
+}
+
+.ide-window-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.window-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.window-dot.red {
+  background: #ef4444;
+  opacity: 0.85;
+}
+
+.window-dot.yellow {
+  background: #f59e0b;
+  opacity: 0.85;
+}
+
+.window-dot.green {
+  background: #10b981;
+  opacity: 0.85;
+}
+
+.ide-tab-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #18181b;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 3px 10px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.ide-file-icon {
+  font-size: 12px;
+}
+
+.ide-file-name {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.ide-lang-chip {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  background: #27272a;
+  padding: 1px 5px;
+  border-radius: 3px;
+  text-transform: lowercase;
+}
+
+.ide-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ide-lines-count {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.ide-copy-btn {
+  background: #27272a;
+  border: 1px solid var(--border-subtle);
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+}
+
+.ide-copy-btn:hover {
+  background: #3f3f46;
+  border-color: #ffffff;
+}
+
+.copied-text {
+  color: #34d399;
+}
+
+/* ── Code Editor Body & Line Numbers Gutter ─────────────────────── */
+.ide-editor-body {
+  display: flex;
+  background: #09090b;
+  overflow-x: auto;
+  max-height: 380px;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+/* Gutter */
+.ide-gutter {
+  display: flex;
+  flex-direction: column;
+  padding: 14px 10px 14px 14px;
+  background: #0c0c0f;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  user-select: none;
+  text-align: right;
+  min-width: 38px;
+}
+
+.gutter-number {
+  color: #52525b;
+  font-size: 11.5px;
+  line-height: 1.65;
+}
+
+/* Code Content */
+.ide-code-content {
+  margin: 0;
+  padding: 14px 16px;
+  flex: 1;
+  overflow: visible;
+  color: #e4e4e7;
+  tab-size: 4;
+}
+
+.ide-code-content code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, Monaco, monospace;
+}
+
+.ide-code-line {
+  white-space: pre;
+  min-height: 1.65em;
+}
+
+/* ── Syntax Token Color Palette (VS Code Dark Modern) ──────────── */
+
+/* Keywords: class, def, while, if, for, return, etc. */
+.token-keyword {
+  color: #c586c0; /* Vibrant Magenta/Purple */
+  font-weight: 600;
+}
+
+/* Functions & Methods: findTwoElement, len, append, range, etc. */
+.token-function {
+  color: #dcdcaa; /* Warm Gold/Yellow */
+  font-weight: 600;
+}
+
+/* Types & Classes: Solution, TreeNode, List, int, etc. */
+.token-type {
+  color: #4ec9b0; /* Mint / Teal */
+}
+
+/* Builtins: self, this, len, min, max, etc. */
+.token-builtin {
+  color: #9cdcfe; /* Light Cyan/Sky */
+}
+
+/* Strings: '...', "..." */
+.token-string {
+  color: #ce9178; /* Coral / Orange */
+}
+
+/* Numbers: 0, -1, 100 */
+.token-number {
+  color: #b5cea8; /* Pale Lime / Green */
+}
+
+/* Constants & Booleans: True, False, None, null */
+.token-constant {
+  color: #569cd6; /* Electric Blue */
+  font-weight: 600;
+}
+
+/* Comments: # code here, // comment */
+.token-comment {
+  color: #6a9955; /* Forest Green */
+  font-style: italic;
+}
+
+/* Operators & Punctuation: =, ==, +, -, <, > */
+.token-operator {
+  color: #d4d4d4; /* Crisp Off-White */
+}
+
+/* Variables: arr, duplicate, missing, etc. */
+.token-variable {
+  color: #9cdcfe;
+}

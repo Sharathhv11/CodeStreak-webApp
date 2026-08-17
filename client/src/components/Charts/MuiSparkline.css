@@ -1,0 +1,25 @@
+.mui-sparkline-wrap {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.mui-sparkline-svg {
+  display: block;
+  overflow: visible;
+}
+
+.mui-sparkline-area {
+  transition: all 0.3s ease;
+}
+
+.mui-sparkline-line {
+  filter: drop-shadow(0 2px 6px rgba(59, 130, 246, 0.35));
+  transition: stroke-width 0.2s ease;
+}
+
+.mui-sparkline-dot {
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.8));
+}

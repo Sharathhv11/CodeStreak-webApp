@@ -1,0 +1,224 @@
+/* ── Repo Banner ─────────────────────────────────────────────── */
+.repo-banner {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: var(--radius-lg);
+  padding: 22px 26px;
+  animation: fade-in 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.repo-banner-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.repo-banner-text h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 4px;
+  letter-spacing: -0.2px;
+}
+
+.repo-banner-text p {
+  font-size: 13px;
+  color: #8b949e;
+}
+
+.repo-banner-form {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+  min-width: 320px;
+  max-width: 500px;
+}
+
+.repo-input-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.repo-input-wrap:focus-within {
+  border-color: #58a6ff;
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.15);
+}
+
+.repo-prefix {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #8b949e;
+  background: #12161c;
+  border-right: 1px solid #30363d;
+  white-space: nowrap;
+  font-family: var(--mono);
+}
+
+.repo-input-wrap input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  color: #ffffff;
+  font-size: 13px;
+  font-family: var(--font);
+}
+
+.repo-input-wrap input::placeholder {
+  color: #6e7681;
+}
+
+.repo-create-btn {
+  padding: 8px 20px;
+  background: #238636;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.repo-create-btn:hover {
+  background: #2ea043;
+  transform: translateY(-1px);
+}
+
+.repo-create-btn:disabled {
+  background: #21262d;
+  color: #8b949e;
+  border-color: #30363d;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Existing Repo Conflict Dialog ─────────────────────────────── */
+.repo-conflict-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.repo-conflict-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.repo-conflict-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+.repo-conflict-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.repo-conflict-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.repo-conflict-msg {
+  font-size: 13.5px;
+  color: #c9d1d9;
+  line-height: 1.5;
+}
+
+.inline-repo-code {
+  font-family: var(--mono);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #30363d;
+  padding: 1px 6px;
+  border-radius: 4px;
+  color: #58a6ff;
+  font-weight: 600;
+}
+
+.repo-conflict-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-left: 52px;
+}
+
+.repo-use-existing-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #238636;
+  color: #ffffff;
+  border: none;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.repo-use-existing-btn:hover {
+  background: #2ea043;
+  transform: translateY(-1px);
+}
+
+.repo-choose-different-btn {
+  background: transparent;
+  color: #8b949e;
+  border: 1px solid #30363d;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.repo-choose-different-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e6edf3;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.repo-error-banner {
+  margin-top: 14px;
+  padding: 8px 12px;
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  color: #f87171;
+}
+
+@media (max-width: 768px) {
+  .repo-banner-form {
+    min-width: 100%;
+  }
+  .repo-conflict-actions {
+    padding-left: 0;
+  }
+}
