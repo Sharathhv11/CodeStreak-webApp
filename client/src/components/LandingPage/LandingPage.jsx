@@ -20,7 +20,7 @@ import {
   TerminalIcon,
 } from '../icons/index.jsx';
 
-export default function LandingPage({ onLogin, onGoToDashboard, user }) {
+export default function LandingPage({ onLogin, onGoToDashboard, onInstall, user }) {
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -57,7 +57,7 @@ export default function LandingPage({ onLogin, onGoToDashboard, user }) {
                 <button className="nav-signin-btn" onClick={onLogin}>
                   <span>Sign In</span>
                 </button>
-                <button className="nav-cta-btn" onClick={onLogin}>
+                <button className="nav-cta-btn" onClick={onInstall}>
                   <ChromeIcon size={16} />
                   <span>Add to Chrome</span>
                 </button>
@@ -80,7 +80,7 @@ export default function LandingPage({ onLogin, onGoToDashboard, user }) {
           </p>
 
           <div className="hero-cta-group">
-            <button className="hero-primary-btn" onClick={onLogin}>
+            <button className="hero-primary-btn" onClick={onInstall}>
               <ChromeIcon size={18} />
               <span>Add to Chrome</span>
             </button>
@@ -469,8 +469,8 @@ export default function LandingPage({ onLogin, onGoToDashboard, user }) {
               <a href="#demo-preview" onClick={(e) => { e.preventDefault(); scrollToSection('demo-preview'); }} className="footer-link">
                 <span>Documentation</span>
               </a>
-              <a href="#how-it-works" onClick={(e) => { e.preventDefault(); scrollToSection('how-it-works'); }} className="footer-link">
-                <span>Chrome Extension</span>
+              <a href="/install" onClick={(e) => { e.preventDefault(); onInstall(); }} className="footer-link">
+                <span>Add to Chrome</span>
               </a>
             </div>
           </div>

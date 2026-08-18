@@ -25,6 +25,12 @@ import {
   GithubIcon,
 } from '../icons/index.jsx';
 
+const ALL_DUMMY_CONCEPTS = [
+  'Dynamic Programming', 'Array', 'String', 'Tree', 'Graph', 'Math', 'Sorting',
+  'Greedy', 'Depth-First Search', 'Binary Search', 'Database',
+  'Breadth-First Search', 'Two Pointers', 'Bit Manipulation'
+];
+
 export default function BreakdownCards({
   languageBreakdown = [],
   tagBreakdown = [],
@@ -384,6 +390,20 @@ export default function BreakdownCards({
                       </button>
                     );
                   })}
+                  
+                  {ALL_DUMMY_CONCEPTS
+                    .filter(c => !conceptStackList.some(item => item.concept.toLowerCase() === c.toLowerCase()))
+                    .map(c => (
+                      <button
+                        key={c}
+                        type="button"
+                        className="topic-chip dim-chip"
+                        disabled
+                      >
+                        <span className="topic-name">{c}</span>
+                        <span className="topic-count">0</span>
+                      </button>
+                    ))}
                 </div>
               )}
             </section>

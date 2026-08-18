@@ -434,6 +434,18 @@
   border-color: rgba(0, 0, 0, 0.2);
 }
 
+.topic-chip.dim-chip {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.topic-chip.dim-chip:hover {
+  background: var(--bg-surface-2, #18181b);
+  border-color: var(--border-subtle, rgba(255, 255, 255, 0.08));
+  color: #d4d4d8;
+  transform: none;
+}
+
 /* ── Concept Drill-Down Inspector ──────────────────────────────── */
 .drilldown-content {
   display: flex;
@@ -492,6 +504,7 @@
   align-items: center;
   gap: 10px;
   min-width: 0;
+  flex: 1;
 }
 
 .insp-diff-badge {
@@ -541,6 +554,7 @@
   font-size: 11px;
   color: #71717a;
   font-family: var(--font-mono, monospace);
+  flex-wrap: wrap;
 }
 
 .meta-sep {
@@ -576,16 +590,16 @@
 }
 
 .insp-btn-practice {
-  background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.35);
-  color: #34d399;
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: #ffffff;
   font-weight: 600;
 }
 
 .insp-btn-practice:hover {
-  background: #10b981;
-  border-color: #10b981;
-  color: #000000;
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #ffffff;
 }
 
 .insp-btn-notes {

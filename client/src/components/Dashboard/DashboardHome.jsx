@@ -9,6 +9,7 @@ import {
   ArrowRightIcon,
   InboxIcon,
   GithubIcon,
+  ChromeIcon,
 } from '../icons/index.jsx';
 import { formatTimeAgo, formatDateReadable, getLocalDateKey } from '../../utils/helpers';
 import { aggregateConceptData, DIFFICULTY_CONFIG } from '../../utils/conceptHelpers';
@@ -589,6 +590,36 @@ export default function DashboardHome({
           )}
         </section>
       </div>
+
+      {/* ── Beautiful Dashboard Footer ─────────────────────────── */}
+      <footer className="dash-home-footer">
+        <div className="dash-footer-divider" />
+        <div className="dash-footer-content">
+          <div className="dash-footer-left">
+            <span className="dash-footer-logo">CodeStreak</span>
+            <p className="dash-footer-text">
+              Automated DSA repository synchronization. Built for engineers.
+            </p>
+          </div>
+          <div className="dash-footer-links">
+            <a href="https://github.com" target="_blank" rel="noreferrer" className="dash-footer-link">
+              <GithubIcon size={13} />
+              <span>GitHub</span>
+            </a>
+            <a href="/install" className="dash-footer-link">
+              <ChromeIcon size={13} />
+              <span>Extension Setup</span>
+            </a>
+          </div>
+          <div className="dash-footer-right">
+            <div className="status-indicator">
+              <span className="status-dot green" />
+              <span className="status-label">All systems operational</span>
+            </div>
+            <span className="dash-copyright">© {new Date().getFullYear()} CodeStreak</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

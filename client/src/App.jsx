@@ -15,6 +15,7 @@ import RepoBanner from './components/RepoBanner/RepoBanner.jsx';
 import BreakdownCards from './components/BreakdownCards/BreakdownCards.jsx';
 import SubmissionsList from './components/SubmissionsList/SubmissionsList.jsx';
 import SettingsView from './components/Dashboard/SettingsView.jsx';
+import InstallPage from './components/InstallPage/InstallPage.jsx';
 
 // ── Main App ────────────────────────────────────────────────────
 function App() {
@@ -84,6 +85,20 @@ function App() {
         <LoginPage
           onLogin={handleGithubLogin}
           onBack={() => navigate('/')}
+        />
+      </div>
+    );
+  }
+
+  // ── Route: /install ─────────────────────────────────────────────
+  if (currentPath === '/install' || currentPath === '/setup') {
+    return (
+      <div className="app-wrapper">
+        <InstallPage
+          onBack={() => navigate('/')}
+          onLogin={() => navigate('/login')}
+          onGoToDashboard={() => navigate('/home')}
+          user={user}
         />
       </div>
     );
@@ -193,6 +208,7 @@ function App() {
     <LandingPage
       onLogin={() => navigate('/login')}
       onGoToDashboard={() => navigate('/home')}
+      onInstall={() => navigate('/install')}
       user={user}
     />
   );
