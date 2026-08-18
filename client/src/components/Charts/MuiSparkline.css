@@ -1,7 +1,8 @@
 .mui-sparkline-wrap {
   position: relative;
   display: block;
-  flex-shrink: 0;
+  flex-shrink: 1;
+  max-width: 100%;
   overflow: visible;
   pointer-events: none;
 }

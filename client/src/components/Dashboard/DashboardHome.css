@@ -221,6 +221,10 @@
   padding: 24px 28px;
   box-shadow: var(--shadow-sm);
   position: relative;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .heatmap-card::before {
@@ -339,6 +343,10 @@
   display: flex;
   align-items: flex-start;
   gap: 8px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .heatmap-days-col {
@@ -359,8 +367,11 @@
 
 .dash-heatmap-scroll {
   overflow-x: auto;
-  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px;
   flex: 1;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .dash-heatmap-grid {
@@ -425,12 +436,22 @@
   grid-template-columns: 1.35fr 1fr;
   gap: 20px;
   align-items: start;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.dash-two-col-grid > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .dash-right-stack {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  width: 100%;
+  min-width: 0;
 }
 
 .dash-link-btn {
@@ -456,10 +477,15 @@
 /* ── Table Styling (Recent Submissions) ────────────────────────── */
 .table-responsive {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .dash-table {
   width: 100%;
+  min-width: 480px;
   border-collapse: collapse;
   text-align: left;
 }
