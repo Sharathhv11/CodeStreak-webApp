@@ -272,10 +272,16 @@
 
 /* ── Responsive Adaptations ────────────────────────────────────── */
 @media (max-width: 900px) {
+  /* Switch to column layout so mobile header stacks above content */
+  .dash-container {
+    flex-direction: column;
+  }
+
   .dash-mobile-header {
     display: flex;
     height: 56px;
     padding: 10px 16px;
+    flex-shrink: 0;
   }
 
   .dash-sidebar {
@@ -284,6 +290,8 @@
     transition: transform var(--duration-normal) var(--ease-out);
     z-index: 100;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+    /* Keep sidebar fixed positioning */
+    top: 56px;
   }
 
   .dash-sidebar.mobile-open {
@@ -292,6 +300,9 @@
 
   .dash-main-content {
     margin-left: 0;
+    /* Take remaining height */
+    flex: 1;
+    min-height: 0;
   }
 
   .dash-main-inner {
