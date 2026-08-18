@@ -7,6 +7,12 @@ import app from "./app.js";
 const PORT = process.env.PORT || 5000;
 const HOST = "0.0.0.0";
 
+app.get("/health", (req, res) => {
+  res.send({
+    status: "ok"
+  })
+})
+
 const startServer = async () => {
   try {
     await connectDB();
