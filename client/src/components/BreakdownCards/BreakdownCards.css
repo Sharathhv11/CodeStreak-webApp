@@ -943,20 +943,123 @@
   .concepts-header-row {
     flex-direction: column;
     align-items: flex-start;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .concepts-view-switcher {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 4px;
+  }
+
+  .view-tab-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .chart-filter-controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .concept-search-input-wrap {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .concept-sort-select,
+  .concept-limit-select {
+    width: 100%;
+  }
+
+  .platform-filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .platform-pills-list {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    padding-bottom: 2px;
+  }
+
+  .platform-filter-pill {
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 }
 
 @media (max-width: 600px) {
+  .card {
+    padding: 16px 14px;
+  }
+
+  .concept-stats-strip {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .concept-stat-box {
+    padding: 12px 14px;
+  }
+
+  .c-stat-value {
+    font-size: 20px;
+  }
+
+  .view-tab-btn {
+    padding: 6px 10px;
+    font-size: 11.5px;
+  }
+
+  .inspector-problem-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 10px;
+  }
+
+  .insp-left {
+    width: 100%;
+  }
+
+  .insp-right {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .insp-link-btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .inspector-header-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .insp-search-box {
+    max-width: 100%;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 420px) {
   .concept-stats-strip {
     grid-template-columns: 1fr;
-  }
-  .concepts-view-switcher {
-    width: 100%;
-    justify-content: space-between;
-  }
-  .view-tab-btn {
-    padding: 6px 8px;
-    font-size: 11.5px;
   }
 }
 

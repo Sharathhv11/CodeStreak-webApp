@@ -266,9 +266,12 @@
 @media (max-width: 900px) {
   .dash-mobile-header {
     display: flex;
+    height: 56px;
+    padding: 10px 16px;
   }
 
   .dash-sidebar {
+    width: 260px;
     transform: translateX(-100%);
     transition: transform var(--duration-normal) var(--ease-out);
     z-index: 100;
@@ -284,6 +287,12 @@
   }
 
   .dash-main-inner {
-    padding: 20px 16px 48px;
+    padding: 16px 14px 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dash-main-inner {
+    padding: 12px 10px 40px;
   }
 }

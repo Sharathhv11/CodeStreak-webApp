@@ -863,13 +863,93 @@
   }
 }
 
+@media (max-width: 768px) {
+  .filter-controls-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .platform-segmented-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    width: 100%;
+  }
+
+  .plat-tab-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .problems-search-box {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .hud-stats-pill-row {
+    width: 100%;
+  }
+}
+
 @media (max-width: 600px) {
+  .problems-hud-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .hud-chart-toggle-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .problems-filter-card {
+    padding: 14px 14px;
+  }
+
   .sub-card-main {
     flex-direction: column;
     align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
   }
+
+  .sub-left {
+    width: 100%;
+  }
+
   .sub-right {
     width: 100%;
     justify-content: space-between;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .sub-expanded {
+    padding: 14px 12px;
+  }
+
+  .sub-primary-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .sub-btn-action {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .complexity-detail-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .code-block {
+    max-height: 240px;
+    font-size: 11px;
+    padding: 10px;
   }
 }

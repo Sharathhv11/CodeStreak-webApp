@@ -356,3 +356,27 @@
     max-height: none;
   }
 }
+
+@media (max-width: 600px) {
+  .mui-chart-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .mui-zoom-slider-pills {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .mui-zoom-pill {
+    flex: 1;
+    text-align: center;
+    padding: 3px 4px;
+    font-size: 10.5px;
+  }
+
+  .mui-charts-surface-wrap {
+    padding: 6px;
+  }
+}

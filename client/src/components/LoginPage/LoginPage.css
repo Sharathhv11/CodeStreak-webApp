@@ -205,3 +205,30 @@
   stroke: #38bdf8;
   flex-shrink: 0;
 }
+
+/* ── Responsive Adaptations ────────────────────────────────────── */
+@media (max-width: 540px) {
+  .login-page {
+    padding: 24px 16px;
+  }
+
+  .login-card {
+    padding: 32px 20px 28px;
+    border-radius: var(--radius-lg);
+  }
+
+  .login-title {
+    font-size: 21px;
+  }
+
+  .login-subtitle {
+    font-size: 13px;
+  }
+
+  .login-back-btn {
+    top: 16px;
+    left: 16px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
