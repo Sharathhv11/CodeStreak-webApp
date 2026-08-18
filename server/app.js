@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import authRouter from "./route/auth/authRoute.js";
 import { protect } from "./middleware/authMiddleware.js";
 import { globalErrorHandler } from "./middleware/errorMiddleware.js";
@@ -8,6 +9,10 @@ import submissionRouter from "./route/submission.js";
 const app = express();
 
 // Middleware
+app.use(cors({
+  origin: process.env.CLIENT_URL || "http://localhost:5173",
+  credentials: true
+}));
 app.use(express.json());
 
 //^ Auth controller 
