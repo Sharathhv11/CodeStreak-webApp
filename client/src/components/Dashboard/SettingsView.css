@@ -223,8 +223,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #22c55e;
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--accent-inverse);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 8px 18px;
   border-radius: var(--radius-sm);
@@ -235,7 +235,7 @@
 }
 
 .btn-primary-green:hover:not(:disabled) {
-  background: #16a34a;
+  background: var(--accent-hover);
   transform: translateY(-1px);
 }
 
@@ -361,7 +361,7 @@
 /* ── Conflict Box ────────────────────────────────────────────── */
 .settings-conflict-box {
   background: var(--bg-surface-2);
-  border: 1px solid rgba(56, 189, 248, 0.35);
+  border: 1px solid var(--accent);
   border-radius: var(--radius-sm);
   padding: 18px 20px;
   display: flex;

@@ -61,7 +61,7 @@
 /* ── Fixed Left Sidebar ────────────────────────────────────────── */
 .dash-sidebar {
   width: 240px;
-  background: var(--bg-surface-1);
+  background: var(--bg-canvas);
   border-right: 1px solid var(--border-subtle);
   display: flex;
   flex-direction: column;
@@ -136,11 +136,11 @@
 }
 
 .dash-nav-item.active {
-  background: var(--bg-surface-2);
+  background: var(--bg-surface-1);
   color: #ffffff;
   font-weight: 600;
   border-color: var(--border-default);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-sm);
 }
 
 .active-nav-glow {
@@ -150,8 +150,8 @@
   bottom: 6px;
   width: 3px;
   border-radius: 0 2px 2px 0;
-  background: #ffffff;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-muted);
 }
 
 .dash-nav-icon {

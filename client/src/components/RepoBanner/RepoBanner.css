@@ -49,8 +49,8 @@
 }
 
 .repo-input-wrap:focus-within {
-  border-color: #58a6ff;
-  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.15);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-muted);
 }
 
 .repo-prefix {
@@ -80,8 +80,8 @@
 
 .repo-create-btn {
   padding: 8px 20px;
-  background: #238636;
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--accent-inverse);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-sm);
   font-size: 13px;
@@ -92,7 +92,7 @@
 }
 
 .repo-create-btn:hover {
-  background: #2ea043;
+  background: var(--accent-hover);
   transform: translateY(-1px);
 }
 
@@ -170,8 +170,8 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #238636;
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--accent-inverse);
   border: none;
   padding: 8px 18px;
   font-size: 13px;
@@ -182,7 +182,7 @@
 }
 
 .repo-use-existing-btn:hover {
-  background: #2ea043;
+  background: var(--accent-hover);
   transform: translateY(-1px);
 }
 

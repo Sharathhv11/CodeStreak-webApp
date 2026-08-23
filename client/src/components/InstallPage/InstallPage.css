@@ -295,7 +295,7 @@
 .copy-url-box code {
   font-family: var(--mono);
   font-size: 13px;
-  color: #60a5fa; /* Blue accent matching theme */
+  color: var(--accent); /* Blue accent matching theme */
 }
 
 .copy-btn {
@@ -339,7 +339,7 @@
 }
 
 .toggle-switch.active {
-  background: #3b82f6; /* Blue active switch background */
+  background: var(--accent); /* Blue active switch background */
 }
 
 .toggle-handle {
@@ -362,7 +362,7 @@
   display: inline-block;
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #3b82f6; /* Chrome Dev button style */
+  color: var(--accent); /* Chrome Dev button style */
   font-size: 12px;
   font-weight: 600;
   padding: 6px 14px;
