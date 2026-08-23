@@ -3,7 +3,7 @@
 
 // ─── 1. RECEIVE JWT FROM WEBSITE ──────────────────────────────────────────────
 chrome.runtime.onMessageExternal.addListener((message, sender, sendResponse) => {
-    if (sender.origin !== "http://localhost:5173") return;
+    if (sender.origin !== "https://code-streak1.vercel.app") return;
 
     if (message.type === "AUTH_TOKEN") {
         // Store both the token AND the user object
@@ -56,12 +56,12 @@ async function handleSubmission(submissionData) {
     const { authToken } = await chrome.storage.local.get("authToken");
 
     if (!authToken) {
-        chrome.tabs.create({ url: "http://localhost:5173/login" });
+        chrome.tabs.create({ url: "https://code-streak1.vercel.app/login" });
         return;
     }
 
     try {
-        const res = await fetch("http://localhost:5000/api/submission", {
+        const res = await fetch("https://codestreak-webapp.onrender.com/api/submission", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -74,7 +74,7 @@ async function handleSubmission(submissionData) {
 
         if (res.status === 401) {
             await chrome.storage.local.remove("authToken");
-            chrome.tabs.create({ url: "http://localhost:5173/login" });
+            chrome.tabs.create({ url: "https://code-streak1.vercel.app/login" });
             return;
         }
 

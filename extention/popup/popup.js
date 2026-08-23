@@ -104,7 +104,7 @@ function showError(errorMessage) {
 connectBtn.addEventListener('click', () => {
     showLoadingState();
     // open the website login page — website drives the OAuth flow & repository setup
-    chrome.tabs.create({ url: "http://localhost:5173/login" });
+    chrome.tabs.create({ url: "https://code-streak1.vercel.app/login" });
     // reset button state after opening tab
     showDisconnectedState();
 });
@@ -121,7 +121,7 @@ disconnectBtn.addEventListener('click', () => {
 
 // ── Listen for token from website bridge page ─────
 chrome.runtime.onMessageExternal.addListener((message, sender) => {
-    if (sender.origin !== "http://localhost:5173") return;
+    if (sender.origin !== "https://code-streak1.vercel.app") return;
 
     if (message.type === "AUTH_TOKEN") {
         console.log("CodeStreak popup: token received →", message.token);

@@ -13,8 +13,8 @@
         "https://*.geeksforgeeks.org/*",
         "https://geeksforgeeks.org/*",
         "https://practiceapiorigin.geeksforgeeks.org/*",
-        "http://localhost:5173/*",
-        "http://localhost:5000/*"
+        "https://code-streak1.vercel.app/*",
+        "https://codestreak-webapp.onrender.com/*"
     ],
     "content_scripts": [
         {
@@ -49,7 +49,7 @@
     },
     "externally_connectable": {
         "matches": [
-            "http://localhost:5173/*"
+            "https://code-streak1.vercel.app/*"
         ]
     }
 }
