@@ -1,6 +1,6 @@
 // ── Application Constants ────────────────────────────────────────
 
-export const EXTENSION_ID = 'adfdipdnnoifjbmgigodmbaeiffhlmel';
+export const EXTENSION_ID = 'ejmepeahhlppjjaooifcmebonpfppohe';
 
 export const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
 
@@ -13,3 +13,5 @@ export const API_ENDPOINTS = {
   UNLINK_REPO: `${BACKEND_URL}/repo/unlink-repo`,
   REPO_STATUS: `${BACKEND_URL}/repo/status`,
 };
+
+

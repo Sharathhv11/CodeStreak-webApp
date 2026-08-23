@@ -23,7 +23,9 @@
                 "https://*.geeksforgeeks.org/*",
                 "https://geeksforgeeks.org/*"
             ],
-            "js": ["inject.js"],
+            "js": [
+                "inject.js"
+            ],
             "world": "MAIN",
             "run_at": "document_start"
         },
@@ -33,7 +35,9 @@
                 "https://*.geeksforgeeks.org/*",
                 "https://geeksforgeeks.org/*"
             ],
-            "js": ["content.js"]
+            "js": [
+                "content.js"
+            ]
         }
     ],
     "action": {
@@ -51,5 +55,6 @@
         "matches": [
             "https://code-streak1.vercel.app/*"
         ]
-    }
+    },
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqfkn+ZC0SMX+KEIDfePpNjF9HLjXJRiPXcjcnmBgpnVCVlM8bCUNG5TLoTGkCwB9KPsE5DJcNz+UC6Jhyx0wqjnug7w4QOUNaJIdbXniGyY9ekoPPqdqCV44hkopodLsFnAO7PGL2NpSayKZBA9U8Ldapv9KB5h9Eb/uUxmLEt82/Pqt0+LcY4JiorRJTHA0yiPMu1rS74naGFaWMF7nzAQgVr/y9vHQ9wra7e+eEvDP8I4X4CaodBE2BlMuv0eVGuVEcQ5OcRKaHoAn+uZRYnPWy2+/fSLGzxfts+RTOZHwYOcZC6gSLQD5st5W0227levD7FMh2fQk9fz3Kzkk0wIDAQAB"
 }
