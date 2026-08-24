@@ -14,7 +14,7 @@
         "https://geeksforgeeks.org/*",
         "https://practiceapiorigin.geeksforgeeks.org/*",
         "https://code-streak1.vercel.app/*",
-        "https://codestreak-webapp.onrender.com/*"
+        "https://codestreak-7ggd.onrender.com/*"
     ],
     "content_scripts": [
         {

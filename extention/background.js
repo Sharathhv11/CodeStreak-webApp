@@ -61,7 +61,7 @@ async function handleSubmission(submissionData) {
     }
 
     try {
-        const res = await fetch("https://codestreak-webapp.onrender.com/api/submission", {
+        const res = await fetch("https://codestreak-7ggd.onrender.com/api/submission", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
