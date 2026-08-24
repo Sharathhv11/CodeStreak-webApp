@@ -947,3 +947,97 @@
     font-size: 20px;
   }
 }
+
+/* ── Beautiful Dashboard Footer ────────────────────────────────── */
+.dash-home-footer {
+  margin-top: 20px;
+  padding-bottom: 24px;
+}
+
+.dash-footer-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  margin-bottom: 24px;
+}
+
+.dash-footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.dash-footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dash-footer-logo {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.dash-footer-text {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.dash-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.dash-footer-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+
+.dash-footer-link:hover {
+  color: #ffffff;
+}
+
+.dash-footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+}
+
+.status-dot.green {
+  background-color: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.status-label {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.dash-copyright {
+  font-size: 11px;
+  color: var(--text-subtle);
+  font-family: var(--mono);
+}

@@ -602,7 +602,7 @@ export default function DashboardHome({
             </p>
           </div>
           <div className="dash-footer-links">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="dash-footer-link">
+            <a href="https://github.com/Sharathhv11/CodeStreak-webApp" target="_blank" rel="noreferrer" className="dash-footer-link">
               <GithubIcon size={13} />
               <span>GitHub</span>
             </a>
