@@ -1,0 +1,15 @@
+services:
+  server:
+    image: codestreak-server:1.0
+    ports:
+      - "5000:5000"
+    environment:
+      MONGODB_URL : mongodb+srv://mini-project:KzqE403pb2dJHRSV@cluster01.hulwm.mongodb.net/CodeStreak
+      GITHUB_CLIENT_ID: Ov23liQ0pxISITEzJA6b
+      GITHUB_CLIENT_SECRET: 4b63d531588ce75a03ab40c4d18f61b6ee3e5617
+      GITHUB_REDIRECT_URI: http://localhost:5173
+      GEMINI_API: AIzaSyA_1TXNkxipd4LV4YI4iwyhdrDU3-_9KAI
+
+
+    
+  
