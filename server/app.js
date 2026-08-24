@@ -17,7 +17,8 @@ app.use(express.json());
 
 app.get("/health", (req, res) => {
   res.status(200).send({
-    status: "ok"
+    status: "ok",
+    message:"server is working fine."
   })
 })
 
