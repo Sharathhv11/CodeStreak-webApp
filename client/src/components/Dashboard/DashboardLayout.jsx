@@ -5,6 +5,7 @@ import {
   HomeIcon,
   ListIcon,
   TagIcon,
+  MessageCircleIcon,
   SettingsIcon,
   LogOutIcon,
 } from '../icons/index.jsx';
@@ -16,6 +17,7 @@ export default function DashboardLayout({ user, onLogout, activeTab, onSelectTab
     { id: 'dashboard', label: 'Dashboard', icon: <HomeIcon size={17} /> },
     { id: 'problems', label: 'Problems', icon: <ListIcon size={17} /> },
     { id: 'concepts', label: 'Concepts', icon: <TagIcon size={17} /> },
+    { id: 'assistant', label: 'AI Assistant', icon: <MessageCircleIcon size={17} /> },
     { id: 'settings', label: 'Settings', icon: <SettingsIcon size={17} /> },
   ];
 

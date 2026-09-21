@@ -59,6 +59,10 @@ export const getPracticeUrl = (sub = {}) => {
   if (platform.includes('geeks') || platform.includes('gfg')) {
     return `https://www.geeksforgeeks.org/problems/${slug}/1`;
   }
+
+  if (platform.includes('code360') || platform.includes('codingninjas') || platform.includes('coding ninjas')) {
+    return `https://www.naukri.com/code360/problems/${slug}`;
+  }
   
   if (platform.includes('codeforces') || platform === 'cf') {
     const cleanSlug = slug.replace(/^problem-/, '');
@@ -83,7 +87,10 @@ export const getPracticeUrl = (sub = {}) => {
 export const getGithubReadmeUrl = (sub = {}, user = {}) => {
   if (sub.github_readme_url) return sub.github_readme_url;
   
-  const platformSlug = (sub.platform || 'leetcode').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  let platformSlug = (sub.platform || 'leetcode').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  if (platformSlug.includes('code360') || platformSlug.includes('codingninjas') || platformSlug.includes('coding-ninjas')) {
+    platformSlug = 'coding360';
+  }
   const conceptName = sub.concept || (sub.tags && (sub.tags[0]?.name || sub.tags[0])) || 'general';
   const conceptSlug = conceptName.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   const problemSlug = (sub.slug || sub.title || 'problem').toLowerCase().replace(/[^a-z0-9-_.]+/g, '-');

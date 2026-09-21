@@ -27,6 +27,7 @@ export const DIFFICULTY_CONFIG = {
 export const PLATFORM_CONFIG = {
   LeetCode: { name: 'LeetCode', color: '#f59e0b', badgeClass: 'plat-leetcode' },
   GeeksforGeeks: { name: 'GeeksforGeeks', color: '#10b981', badgeClass: 'plat-gfg' },
+  'Coding Ninjas': { name: 'Coding Ninjas', color: '#f97316', badgeClass: 'plat-codingninjas' },
   Codeforces: { name: 'Codeforces', color: '#38bdf8', badgeClass: 'plat-codeforces' },
   CodeChef: { name: 'CodeChef', color: '#a855f7', badgeClass: 'plat-codechef' },
   HackerRank: { name: 'HackerRank', color: '#06b6d4', badgeClass: 'plat-hackerrank' },
@@ -41,6 +42,7 @@ export function normalizePlatform(rawPlatform = '') {
   const str = String(rawPlatform).toLowerCase().trim();
   if (str.includes('leetcode') || str === 'lc') return 'LeetCode';
   if (str.includes('geeks') || str.includes('gfg')) return 'GeeksforGeeks';
+  if (str.includes('code360') || str.includes('codingninjas') || str.includes('coding ninjas')) return 'Coding Ninjas';
   if (str.includes('codeforces') || str === 'cf') return 'Codeforces';
   if (str.includes('codechef')) return 'CodeChef';
   if (str.includes('hackerrank')) return 'HackerRank';

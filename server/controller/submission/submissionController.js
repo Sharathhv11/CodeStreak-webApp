@@ -1,6 +1,7 @@
 import { asyncController } from "../../utils/asyncController.js";
 import AppError from "../../utils/AppError.js";
 import Submission from "../../model/submissionModel.js";
+import { indexSubmissionEmbedding } from "../../services/embeddingService.js";
 
 // Helper to convert slug to readable title
 const slugToTitle = (slug) => {
@@ -100,29 +101,52 @@ const deriveConceptFromCode = (code = "", language = "", tags = [], title = "") 
   return "General";
 };
 
+// Helper to canonicalize concept slugs to platform standards (e.g. 2-pointer, linked-list)
+export const canonicalizeConceptSlug = (slug) => {
+  if (!slug) return "general";
+  const s = slug.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+  if (s.includes("two-pointer") || s.includes("2-pointer")) return "2-pointer";
+  if (s === "trees" || s === "tree" || s === "binary-trees") return "binary-tree";
+  if (s === "binary-search-tree" || s === "bst") return "binary-search-tree";
+  if (s === "linked-lists") return "linked-list";
+  if (s === "dynamic-programming" || s === "dp") return "dynamic-programming";
+  if (s === "sliding-windows") return "sliding-window";
+  return s;
+};
+
 // Helper to derive and slugify concept names (e.g. "Hash Table" -> "hash-table")
-const deriveConceptSlug = (rawConcept, tags) => {
+export const deriveConceptSlug = (rawConcept, tags) => {
   if (rawConcept && typeof rawConcept === "string" && rawConcept.trim()) {
-    return rawConcept
-      .trim()
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-+|-+$/g, "");
+    return canonicalizeConceptSlug(rawConcept);
   }
 
   if (Array.isArray(tags) && tags.length > 0) {
     const firstTag = tags[0];
     const tagName = typeof firstTag === "string" ? firstTag : firstTag?.name || firstTag?.slug || "";
     if (tagName) {
-      return tagName
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
+      return canonicalizeConceptSlug(tagName);
     }
   }
 
   return "general";
+};
+
+// Helper to get platform repository folder name
+export const getPlatformFolder = (platform) => {
+  const p = (platform || "").toLowerCase().trim();
+  if (p.includes("code360") || p.includes("codingninjas") || p.includes("coding ninjas") || p === "coding360") {
+    return "coding360";
+  }
+  if (p.includes("geeks") || p.includes("gfg")) {
+    return "geeksforgeeks";
+  }
+  if (p.includes("codeforces") || p === "cf") {
+    return "codeforces";
+  }
+  if (p.includes("leetcode") || p === "lc") {
+    return "leetcode";
+  }
+  return p.replace(/[^a-z0-9]+/g, "-") || "leetcode";
 };
 
 // Helper to push a file to GitHub repository (creates or updates)
@@ -324,7 +348,7 @@ Output strictly valid JSON with no markdown formatting or backticks outside the 
   }
 
   // 3. GitHub Hierarchy: /{platform}/{ai_concept}/{problem}
-  const platformFolder = (platform || "leetcode").toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const platformFolder = getPlatformFolder(platform);
   const conceptFolder = deriveConceptSlug(detectedConcept, tags);
   const problemFolder = slug.toLowerCase().replace(/[^a-z0-9-_.]+/g, "-");
 
@@ -409,6 +433,11 @@ ${explanation}
     spaceComplexity,
     explanation,
   });
+
+  // Fire-and-forget: index embedding for RAG assistant
+  indexSubmissionEmbedding(newSubmission, user._id).catch((err) =>
+    console.error("RAG embedding indexing failed (non-blocking):", err.message)
+  );
 
   res.status(201).json({
     success: true,

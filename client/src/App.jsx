@@ -16,6 +16,7 @@ import BreakdownCards from './components/BreakdownCards/BreakdownCards.jsx';
 import SubmissionsList from './components/SubmissionsList/SubmissionsList.jsx';
 import SettingsView from './components/Dashboard/SettingsView.jsx';
 import InstallPage from './components/InstallPage/InstallPage.jsx';
+import ChatWindow from './components/Chat/ChatWindow.jsx';
 
 // ── Main App ────────────────────────────────────────────────────
 function App() {
@@ -176,6 +177,12 @@ function App() {
               submissions={submissions}
               user={user}
             />
+          </div>
+        )}
+
+        {sidebarTab === 'assistant' && (
+          <div className="dash-subview">
+            <ChatWindow token={token} user={user} />
           </div>
         )}
 

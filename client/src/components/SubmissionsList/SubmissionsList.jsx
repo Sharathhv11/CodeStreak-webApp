@@ -22,11 +22,12 @@ export default function SubmissionsList({
 
   // Platform Breakdown Counts
   const platformCounts = useMemo(() => {
-    const counts = { all: submissions.length, leetcode: 0, codeforces: 0, geeksforgeeks: 0 };
+    const counts = { all: submissions.length, leetcode: 0, codeforces: 0, geeksforgeeks: 0, code360: 0 };
     submissions.forEach((sub) => {
       const plat = (sub.platform || 'leetcode').toLowerCase();
       if (plat.includes('codeforces') || plat === 'cf') counts.codeforces += 1;
       else if (plat.includes('geeks') || plat.includes('gfg')) counts.geeksforgeeks += 1;
+      else if (plat.includes('code360') || plat.includes('codingninjas') || plat.includes('coding ninjas')) counts.code360 += 1;
       else counts.leetcode += 1;
     });
     return counts;
@@ -43,6 +44,7 @@ export default function SubmissionsList({
         if (selectedPlatform === 'leetcode' && !subPlat.includes('leetcode')) return false;
         if (selectedPlatform === 'codeforces' && !subPlat.includes('codeforces') && subPlat !== 'cf') return false;
         if (selectedPlatform === 'geeksforgeeks' && !subPlat.includes('geeks') && !subPlat.includes('gfg')) return false;
+        if (selectedPlatform === 'code360' && !subPlat.includes('code360') && !subPlat.includes('codingninjas') && !subPlat.includes('coding ninjas')) return false;
       }
 
       // Language filter
@@ -90,11 +92,13 @@ export default function SubmissionsList({
 
     const series = [
       { key: 'leetcode', label: 'LeetCode', color: '#f59e0b', totalCount: platformCounts.leetcode },
+      { key: 'code360', label: 'Code360', color: '#f97316', totalCount: platformCounts.code360 },
       { key: 'codeforces', label: 'Codeforces', color: '#38bdf8', totalCount: platformCounts.codeforces },
       { key: 'geeksforgeeks', label: 'GeeksforGeeks', color: '#10b981', totalCount: platformCounts.geeksforgeeks },
     ];
 
     let lcCum = 0;
+    let c360Cum = 0;
     let cfCum = 0;
     let gfgCum = 0;
 
@@ -104,7 +108,13 @@ export default function SubmissionsList({
       const lcOnDay = submissions.filter((s) => {
         const p = (s.platform || 'leetcode').toLowerCase();
         const d = getLocalDateKey(new Date(s.timestamp || s.createdAt || Date.now()));
-        return d === day.key && (p.includes('leetcode') || (!p.includes('codeforces') && !p.includes('geeks')));
+        return d === day.key && (p.includes('leetcode') || (!p.includes('codeforces') && !p.includes('geeks') && !p.includes('code360') && !p.includes('codingninjas')));
+      }).length;
+
+      const c360OnDay = submissions.filter((s) => {
+        const p = (s.platform || '').toLowerCase();
+        const d = getLocalDateKey(new Date(s.timestamp || s.createdAt || Date.now()));
+        return d === day.key && (p.includes('code360') || p.includes('codingninjas') || p.includes('coding ninjas'));
       }).length;
 
       const cfOnDay = submissions.filter((s) => {
@@ -120,11 +130,13 @@ export default function SubmissionsList({
       }).length;
 
       lcCum += lcOnDay;
+      c360Cum += c360OnDay;
       cfCum += cfOnDay;
       gfgCum += gfgOnDay;
 
       // Make sure final totals match actual platform counts at latest point
       row.leetcode = idx === days.length - 1 ? Math.max(lcCum, platformCounts.leetcode) : lcCum;
+      row.code360 = idx === days.length - 1 ? Math.max(c360Cum, platformCounts.code360) : c360Cum;
       row.codeforces = idx === days.length - 1 ? Math.max(cfCum, platformCounts.codeforces) : cfCum;
       row.geeksforgeeks = idx === days.length - 1 ? Math.max(gfgCum, platformCounts.geeksforgeeks) : gfgCum;
 
@@ -178,6 +190,10 @@ export default function SubmissionsList({
                 <span className="metric-k">LC:</span>
                 <span className="metric-v">{platformCounts.leetcode}</span>
               </span>
+              <span className="hud-metric-pill code360">
+                <span className="metric-k">C360:</span>
+                <span className="metric-v">{platformCounts.code360}</span>
+              </span>
               <span className="hud-metric-pill codeforces">
                 <span className="metric-k">CF:</span>
                 <span className="metric-v">{platformCounts.codeforces}</span>
@@ -196,7 +212,7 @@ export default function SubmissionsList({
             xAxisLabel="x-axis (Timeline)"
             yAxisLabel="Solutions"
             title="Cross-Platform Sync Velocity"
-            subtitle="Multi-line chart comparison across LeetCode, Codeforces, and GeeksforGeeks"
+            subtitle="Multi-line chart comparison across LeetCode, Code360, Codeforces, and GeeksforGeeks"
             height={260}
           />
         </section>
@@ -221,6 +237,13 @@ export default function SubmissionsList({
             >
               <span>LeetCode</span>
               <span className="plat-tab-count">{platformCounts.leetcode}</span>
+            </button>
+            <button
+              className={`plat-tab-btn code360 ${selectedPlatform === 'code360' ? 'active' : ''}`}
+              onClick={() => setSelectedPlatform('code360')}
+            >
+              <span>Code360</span>
+              <span className="plat-tab-count">{platformCounts.code360}</span>
             </button>
             <button
               className={`plat-tab-btn codeforces ${selectedPlatform === 'codeforces' ? 'active' : ''}`}

@@ -168,6 +168,11 @@
   color: #fbbf24;
 }
 
+.hud-metric-pill.code360 {
+  border-color: rgba(249, 115, 22, 0.3);
+  color: #fb923c;
+}
+
 .hud-metric-pill.codeforces {
   border-color: rgba(56, 189, 248, 0.3);
   color: #38bdf8;

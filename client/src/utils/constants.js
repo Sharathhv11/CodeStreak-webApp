@@ -12,6 +12,8 @@ export const API_ENDPOINTS = {
   CREATE_REPO: `${BACKEND_URL}/repo/create-repo`,
   UNLINK_REPO: `${BACKEND_URL}/repo/unlink-repo`,
   REPO_STATUS: `${BACKEND_URL}/repo/status`,
+  RAG_ASK: `${BACKEND_URL}/api/rag/ask`,
+  RAG_STATUS: `${BACKEND_URL}/api/rag/status`,
 };
 
 

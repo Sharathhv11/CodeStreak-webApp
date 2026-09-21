@@ -5,6 +5,7 @@ import { protect } from "./middleware/authMiddleware.js";
 import { globalErrorHandler } from "./middleware/errorMiddleware.js";
 import gitHubRepoRouter from "./route/githubOps.js";
 import submissionRouter from "./route/submission.js";
+import ragRouter from "./route/rag.js";
 
 const app = express();
 
@@ -30,6 +31,9 @@ app.use("/repo", protect, gitHubRepoRouter);
 
 //^ submission controller
 app.use("/api/submission", protect, submissionRouter);
+
+//^ RAG AI assistant
+app.use("/api/rag", protect, ragRouter);
 
 // Global Error Handler
 app.use(globalErrorHandler);

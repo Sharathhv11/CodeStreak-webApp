@@ -13,6 +13,10 @@
         "https://*.geeksforgeeks.org/*",
         "https://geeksforgeeks.org/*",
         "https://practiceapiorigin.geeksforgeeks.org/*",
+        "https://*.naukri.com/*",
+        "https://naukri.com/*",
+        "https://*.codingninjas.com/*",
+        "https://codingninjas.com/*",
         "https://code-streak1.vercel.app/*",
         "https://codestreak-7ggd.onrender.com/*"
     ],
@@ -21,9 +25,14 @@
             "matches": [
                 "https://leetcode.com/*",
                 "https://*.geeksforgeeks.org/*",
-                "https://geeksforgeeks.org/*"
+                "https://geeksforgeeks.org/*",
+                "https://*.naukri.com/*",
+                "https://naukri.com/*",
+                "https://*.codingninjas.com/*",
+                "https://codingninjas.com/*"
             ],
             "js": [
+                "code360Parser.js",
                 "inject.js"
             ],
             "world": "MAIN",
@@ -33,7 +42,11 @@
             "matches": [
                 "https://leetcode.com/*",
                 "https://*.geeksforgeeks.org/*",
-                "https://geeksforgeeks.org/*"
+                "https://geeksforgeeks.org/*",
+                "https://*.naukri.com/*",
+                "https://naukri.com/*",
+                "https://*.codingninjas.com/*",
+                "https://codingninjas.com/*"
             ],
             "js": [
                 "content.js"
