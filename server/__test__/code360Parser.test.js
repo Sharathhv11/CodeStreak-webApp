@@ -287,6 +287,9 @@ describe("Coding Ninjas Code360 Parser", () => {
       expect(parseCode360Response(null)).toBeNull();
       expect(parseCode360Response(undefined)).toBeNull();
       expect(parseCode360Response({})).toBeNull();
+    });
+  });
+
   // ── 9. Repository & File Structure Verification (/coding360/{concept}/{problemname}) ──
   describe("Repository & File Structure Verification", () => {
     test("maps Coding Ninjas / Code360 platform to coding360 directory", () => {
